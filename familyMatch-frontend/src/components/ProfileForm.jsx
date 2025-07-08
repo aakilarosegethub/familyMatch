@@ -6,8 +6,233 @@ import FormCompletionScreen from './FormCompletionScreen';
 import { validateInput } from '../../utils/validation'; // Adjust path as needed
 import InputField from './InputFields'; // adjust the path as needed
 import { setAuthToken } from '../../utils/authToken';
-import { API_KEY } from '../config'; 
+import { API_KEY } from '../config';
 import { API_BASE_URL } from '../config';
+
+
+
+
+
+
+// const questions = [
+//     //signup data
+//     { id: 1, apiname: "dob", question: "When's your Birth date?", input: 'date', validationType: 'birthday', description: "your text would be here" },
+//     { id: 2, apiname: "full_name", question: "What’s your name as the main contact for the family?", input: 'text', validationType: 'name', description: "your text would be here" },
+//     { id: 3, apiname: "email", question: "What’s the best email to reach you?", input: 'email', validationType: 'email1', description: "your text would be here" },
+//     { id: 4, apiname: "password", question: "What password would you like for your account?", input: 'password', validationType: 'password', description: "your text would be here" },
+//     //yhn tk signup ho k token aa jae ga
+//     { id: 5, apiname: "reffer_id", question: "How did you hear about FamilyMatch?", input: 'text' },
+//     { id: 6, apiname: "religion_id", question: "What's your religion?", input: 'text' },
+//     { id: 7, apiname: "body_type", question: "How would you describe your body type?", input: 'text' },
+//     //suervy started
+//     { id: 8, apiname: "survey_11", question: "Have you ever been married?", input: 'text' },
+//     { id: 9, apiname: "survey_16", question: "Do you have kids?", input: 'text' },
+//     { id: 10, apiname: "survey_17", question: 'Do you want kids?', input: 'text' },
+//     //yhn survey khtm ab blue screeb nthen get profile detail
+//     { id: 11, apiname: "ethnic", question: "Which ethnicity best describe you?", input: 'text' },
+//     { id: 12, apiname: "interests", question: "What interests you?", input: 'text' },
+//     { id: 13, apiname: "bio", question: "One topic. Infinite vibes. What’s yours?", input: 'text' },
+//     { id: 14, apiname: "profile_pic", question: "Ready to catch someone’s eye? 👀", input: 'text' },
+//     { id: 15, apiname: "cvalues", question: "What are your core values?", input: 'text' },
+//     { id: 16, apiname: "number15", question: "", input: 'text'},
+// ];
+
+const questions = [
+    {
+        "id": 1,
+        "apiname": "dob",
+        "question": "When's your Birth date?",
+        "input": "date",
+        "validationType": "birthday",
+        "description": "your text would be here"
+    },
+    {
+        "id": 2,
+        "apiname": "full_name",
+        "question": "What’s your name as the main contact for the family?",
+        "input": "text",
+        "validationType": "name",
+        "description": "your text would be here"
+    },
+    {
+        "id": 3,
+        "apiname": "email",
+        "question": "What’s the best email to reach you?",
+        "input": "email",
+        "validationType": "email1",
+        "description": "your text would be here"
+    },
+    {
+        "id": 4,
+        "apiname": "password",
+        "question": "What password would you like for your account?",
+        "input": "password",
+        "validationType": "password",
+        "description": "Select strong password"
+    },
+    {
+        "id": 5,
+        "apiname": "family_nickname",
+        "question": "What’s a special name or nickname for your family?",
+        "input": "text",
+        "description": "Something that represents your family vibe."
+    },
+    {
+        "id": 6,
+        "apiname": "home_location",
+        "question": "Where does your family call home?",
+        "input": "dropdown-text",
+        "description": "Type or select your location"
+    },
+    {
+        "id": 7,
+        "apiname": "interest_reason",
+        "question": "Why are you interested in Family Match?",
+        "input": "radio",
+        "options": [
+            "New to the area?",
+            "Expand family options?",
+            "Change in family situation (e.g. divorce, remarriage, new blended family)?",
+            "Change in family interests?",
+            "Other (specify)"
+        ],
+        "description": "Help us understand your reason"
+    },
+    {
+        "id": 8,
+        "apiname": "family_size",
+        "question": "How many family members make up your family?",
+        "input": "radio",
+        "options": ["1", "2", "3", "4", "5+"],
+        "description": "Include yourself too"
+    },
+    {
+        "id": 9,
+        "apiname": "life_stage",
+        "question": "Which of the following best describes your family's current life stage?",
+        "input": "radio",
+        "options": [
+            "Expecting a child",
+            "Raising young kids",
+            "Parenting teens",
+            "Empty nesters",
+            "Multigenerational",
+            "Newly married"
+        ]
+    },
+    {
+        "id": 10,
+        "apiname": "family_status",
+        "question": "What’s your family status?",
+        "input": "radio",
+        "options": [
+            "Married",
+            "Single parent",
+            "Blended family",
+            "Multigenerational",
+            "Other"
+        ]
+    },
+    {
+        "id": 11,
+        "apiname": "family_values",
+        "question": "What values are at the heart of your family?",
+        "input": "checkbox",
+        "options": [
+            "Kindness",
+            "Honesty",
+            "Faith",
+            "Adventure",
+            "Respect",
+            "Creativity",
+            "Others"
+        ]
+    },
+    {
+        "id": 12,
+        "apiname": "ethnicity",
+        "question": "What is your family’s ethnicity?",
+        "input": "checkbox",
+        "options": [
+            "Asian",
+            "Black / African descent",
+            "Hispanic / Latino",
+            "Middle Eastern",
+            "White / Caucasian",
+            "Mixed",
+            "Prefer not to say",
+            "Other"
+        ]
+    },
+    {
+        "id": 13,
+        "apiname": "languages_spoken",
+        "question": "What languages do you speak at home or with friends?",
+        "input": "checkbox",
+        "options": [
+            "English",
+            "Urdu",
+            "Arabic",
+            "Punjabi",
+            "Spanish",
+            "French",
+            "Others"
+        ]
+    },
+    {
+        "id": 14,
+        "apiname": "family_activities",
+        "question": "What activities does your family love doing together?",
+        "input": "checkbox",
+        "options": [
+            "Cooking",
+            "Sports",
+            "Board games",
+            "Traveling",
+            "Watching movies",
+            "Outdoor adventures",
+            "Other"
+        ]
+    },
+    {
+        "id": 15,
+        "apiname": "activities_with_others",
+        "question": "What activities would your family enjoy doing with other families?",
+        "input": "checkbox",
+        "options": [
+            "Picnics",
+            "Cultural events",
+            "Playdates",
+            "Volunteering",
+            "Game nights",
+            "Group travel",
+            "Other"
+        ]
+    },
+    {
+        "id": 16,
+        "apiname": "family_tradition",
+        "question": "What’s a favorite family tradition or celebration you cherish?",
+        "input": "text"
+    },
+    {
+        "id": 17,
+        "apiname": "family_story",
+        "question": "What’s a little something about your family's story or traditions?",
+        "input": "textarea"
+    },
+    {
+        "id": 18,
+        "apiname": "family_photo",
+        "question": "Would you like to share a photo or fun avatar?",
+        "input": "image"
+    }
+]
+
+
+
+
+
 
 const ProfileForm = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -15,19 +240,10 @@ const ProfileForm = () => {
     const [ApiData, setApiData] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [errors, setErrors] = useState({});
-    const [questions, setQuestions] = useState([]); // Now questions will be fetched from API
-    const [loading, setLoading] = useState(true);
-    const [formComplete, setFormComplete] = useState(false);
-
 // For creating functiion to moving to the next page when next button is not dis
-    const currentAnswer = answers[questions[currentStep]?.apiname];
     const isNextEnabled =
         !errors[questions[currentStep]?.apiname] &&
-        (
-          Array.isArray(currentAnswer)
-            ? currentAnswer.length > 0
-            : !!currentAnswer
-        );
+        !!answers[questions[currentStep]?.apiname];
 
 // go to the next page by pressing enter key when next button is not disabled
     useEffect(() => {
@@ -41,158 +257,7 @@ const ProfileForm = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isNextEnabled, currentStep]);
 
-    // Fetch questions from API
-    useEffect(() => {
-        const fetchQuestions = async () => {
-            try {
-                setLoading(true);
-                console.log(`${API_BASE_URL}/new-question`);
-                const response = await fetch(`${API_BASE_URL}/new-question`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-API-KEY': API_KEY,
-                    }
-                });
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch questions');
-                }
-
-                const result = await response.json();
-                console.log('API Response:', result);
-                
-                if (result.status && result.data) {
-                    // Check if result.data is directly an array (new API response format)
-                    if (Array.isArray(result.data)) {
-                        console.log('Using direct array response');
-                        const transformedQuestions = result.data.map((question, index) => ({
-                            id: question.id || index + 1,
-                            apiname: question.apiname || question.id || `question_${index + 1}`,
-                            question: question.question || question.text || 'Question',
-                            input_type: question.type || question.input_type || 'text',
-                            validation_type: question.validation_type || 'text',
-                            description: question.description || '',
-                            required: question.required !== false,
-                            signup_param: question.signup_param || question.apiname || `question_${index + 1}`,
-                            options: question.options || []
-                        }));
-                        console.log('Transformed Questions (direct array):', transformedQuestions);
-                        setQuestions(transformedQuestions);
-                    }
-                    // Check for signup_questions array (previous format)
-                    else if (result.data.signup_questions && Array.isArray(result.data.signup_questions)) {
-                        console.log('Using signup_questions array');
-                        const transformedQuestions = result.data.signup_questions.map((question, index) => ({
-                            id: question.id || index + 1,
-                            apiname: question.apiname || question.id || `question_${index + 1}`,
-                            question: question.question || question.text || 'Question',
-                            input_type: question.type || question.input_type || 'text',
-                            validation_type: question.validation_type || 'text',
-                            description: question.description || '',
-                            required: question.required !== false,
-                            signup_param: question.signup_param || question.apiname || `question_${index + 1}`,
-                            options: question.options || []
-                        }));
-                        
-                        console.log('Transformed Questions (signup_questions):', transformedQuestions);
-                        setQuestions(transformedQuestions);
-                    }
-                    // Check for database_questions array as fallback
-                    else if (result.data.database_questions && Array.isArray(result.data.database_questions)) {
-                        console.log('Using database_questions array');
-                        const transformedQuestions = result.data.database_questions.map((question, index) => ({
-                            id: question.id || index + 1,
-                            apiname: question.apiname || question.id || `question_${index + 1}`,
-                            question: question.question || question.text || 'Question',
-                            input_type: question.type || question.input_type || 'text',
-                            validation_type: question.validation_type || 'text',
-                            description: question.description || '',
-                            required: question.required !== false,
-                            signup_param: question.signup_param || question.apiname || `question_${index + 1}`,
-                            options: question.options || []
-                        }));
-                        
-                        console.log('Transformed Questions (database_questions):', transformedQuestions);
-                        setQuestions(transformedQuestions);
-                    }
-                    // Check if questions array exists (original expected format)
-                    else if (result.data.questions && Array.isArray(result.data.questions)) {
-                        console.log('Using questions array');
-                        const transformedQuestions = result.data.questions.map((question, index) => ({
-                            id: question.id,
-                            apiname: question.apiname || question.id,
-                            question: question.question,
-                            input_type: question.type || 'text',
-                            validation_type: question.validation_type || 'text',
-                            description: question.description || '',
-                            required: question.required !== false,
-                            signup_param: question.signup_param || question.apiname,
-                            options: result.data.options && result.data.options[index] ? result.data.options[index] : []
-                        }));
-                        
-                        console.log('Transformed Questions (questions):', transformedQuestions);
-                        setQuestions(transformedQuestions);
-                    } else {
-                        console.error('No valid questions array found in API response:', result.data);
-                        throw new Error('Invalid data structure in API response');
-                    }
-                } else {
-                    console.error('Invalid API response format:', result);
-                    throw new Error('API response does not contain status or data');
-                }
-            } catch (error) {
-                console.error("Error fetching questions:", error);
-                console.error("Error details:", error.message);
-                // Fallback to sample data if API fails
-                setQuestions([
-                    {
-                        "id": 1,
-                        "apiname": "dob",
-                        "question": "When's your Birth date 81?",
-                        "input_type": "date",
-                        "validation_type": "birthday",
-                        "description": "your text would be here",
-                        "required": true,
-                        "signup_param": "dob"
-                    },
-                    {
-                        "id": 2,
-                        "apiname": "full_name",
-                        "question": "What's your name as the main contact for the family?",
-                        "input_type": "text",
-                        "validation_type": "name",
-                        "description": "your text would be here",
-                        "required": true,
-                        "signup_param": "full_name"
-                    },
-                    {
-                        "id": 3,
-                        "apiname": "email",
-                        "question": "What's the best email to reach you?",
-                        "input_type": "email",
-                        "validation_type": "email1",
-                        "description": "your text would be here",
-                        "required": true,
-                        "signup_param": "email"
-                    },
-                    {
-                        "id": 4,
-                        "apiname": "password",
-                        "question": "What password would you like for your account?",
-                        "input_type": "password",
-                        "validation_type": "password",
-                        "description": "Select strong password",
-                        "required": true,
-                        "signup_param": "password"
-                    }
-                ]);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchQuestions();
-    }, []);
 
     const handleNext = () => {
         if (currentStep < questions.length - 1) {
@@ -203,12 +268,20 @@ const ProfileForm = () => {
     const handlePrev = () => {
         if (currentStep > 0) {
             setCurrentStep(prev => prev - 1);
+
         }
     };
 
+
     //Test from utils
     const getValidationType = (question) => {
-        return question.validation_type || '';
+        switch (question.id) {
+            case 1: return 'birthday';
+            case 2: return 'name';
+            case 3: return 'email';
+            case 4: return 'password';
+            default: return '';
+        }
     };
 
     const handleChange = (e) => {
@@ -221,148 +294,16 @@ const ProfileForm = () => {
         setErrors({ ...errors, [currentQuestion.apiname]: error });
     };
 
-    // Render input based on input_type
-    const renderInput = (question) => {
-        const { input_type, options, apiname } = question;
-        
-        switch (input_type) {
-            case 'date':
-            case 'text':
-            case 'email':
-            case 'password':
-                return (
-                    <InputField
-                        q={question}
-                        answers={answers}
-                        handleChange={handleChange}
-                        errors={errors}
-                    />
-                );
-            
-            case 'radio':
-                return (
-                    <div>
-                        {options?.map((option, index) => {
-                            // Support both string and object
-                            const value = typeof option === 'string' ? option : option.id;
-                            const label = typeof option === 'string' ? option : (option.option_text || option.name || value);
-                            return (
-                                <button
-                                    key={index}
-                                    className={`text-[#AE2456] border m-2 py-2 px-6 rounded-3xl w-full sm:w-auto 
-                                        ${answers[apiname] === value ? 'bg-[#AE2456] text-white' : ''}`}
-                                    onClick={() => {
-                                        setAnswers({ ...answers, [apiname]: value });
-                                        setTimeout(() => {
-                                            handleNext();
-                                        }, 1000);
-                                        console.log('answers:', { ...answers, [apiname]: value });
-                                    }}
-                                >
-                                    {label}
-                                </button>
-                            );
-                        })}
-                    </div>
-                );
-            
-            case 'checkbox':
-                return (
-                    <div>
-                        {options?.map((option, index) => {
-                            // Support both string and object
-                            const value = typeof option === 'string' ? option : option.id;
-                            const label = typeof option === 'string' ? option : (option.option_text || option.name || value);
-                            const currentAnswers = answers[apiname] || [];
-                            const isAlreadySelected = currentAnswers.includes(value);
-                            return (
-                                <button
-                                    key={index}
-                                    className={`text-black border m-2 py-2 px-6 rounded-3xl sm:w-auto
-                                        ${isAlreadySelected ? 'bg-black text-white' : ''}`}
-                                    onClick={() => {
-                                        const updatedAnswers = isAlreadySelected
-                                            ? currentAnswers.filter(item => item !== value)
-                                            : [...currentAnswers, value];
-                                        setAnswers({ ...answers, [apiname]: updatedAnswers });
-                                        console.log('answers:', { ...answers, [apiname]: updatedAnswers });
-                                    }}
-                                >
-                                    {label}
-                                </button>
-                            );
-                        })}
-                        <div className='text-center mt-4'>
-                            <button 
-                                className='px-20 py-3 border-2 rounded-4xl text-white bg-[#AE2456]'
-                                onClick={handleNext}
-                                disabled={!(Array.isArray(answers[apiname]) ? answers[apiname].length > 0 : !!answers[apiname])}
-                            >
-                                Continue
-                            </button>
-                        </div>
-                    </div>
-                );
-            
-            case 'textarea':
-                return (
-                    <div>
-                        <p className='text-[#AE2456] font-bold mb-2'>Example</p>
-                        <textarea
-                            value={answers[apiname] || ''}
-                            onChange={handleChange}
-                            className="border w-full rounded-lg p-4"
-                            rows={4}
-                            placeholder="What's your vibe? Drop a topic!"
-                        />
-                        <div className='text-center mt-4'>
-                            <button 
-                                className='px-20 py-3 border-2 rounded-4xl text-white bg-[#AE2456]'
-                                onClick={handleNext}
-                            >
-                                Continue
-                            </button>
-                        </div>
-                    </div>
-                );
-            
-            case 'image':
-                return (
-                    <div>
-                        <ImageUploader onButtonClick={handleNext} />
-                    </div>
-                );
-            
-            case 'dropdown-text':
-                return (
-                    <InputField
-                        q={question}
-                        answers={answers}
-                        handleChange={handleChange}
-                        errors={errors}
-                    />
-                );
-            
-            default:
-                return (
-                    <InputField
-                        q={question}
-                        answers={answers}
-                        handleChange={handleChange}
-                        errors={errors}
-                    />
-                );
-        }
-    };
-
+   
     const handleFinish = async () => {
-        // handleNext(); // isko hata do, ya yahan step na badhao
+        handleNext();
+
         try {
             const response = await fetch(`${API_BASE_URL}/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-API-KEY': API_KEY
+                    'X-API-KEY': API_KEY // Change header key & value as needed
                 },
                 body: JSON.stringify(answers)
             });
@@ -370,16 +311,22 @@ const ProfileForm = () => {
             if (!response.ok) throw new Error('Network error');
 
             const data = await response.json();
+            //if data.token setAuth
             data.token && setAuthToken(data.token);
-            setFormComplete(true); // Show completion screen
         } catch (error) {
             console.error('Error fetching data:', error);
-        }
+        };
     };
+
+
 
     const onSelectedGalleryOption = (data) => {
         setAnswers({ ...answers, [questions[currentStep].apiname]: data });
     };
+
+
+
+
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/options`, {
@@ -419,27 +366,11 @@ const ProfileForm = () => {
         setSelectedOptions(updatedAnswers);
     };
 
-    // Show loading state while fetching questions
-    if (loading) {
-        return (
-            <div className="w-full h-screen flex justify-center items-center px-4 sm:px-6"
-                style={{
-                    background: "linear-gradient(9deg, rgba(250, 233, 239, 0.97) 0%, rgba(247, 248, 250, 1) 100%)"
-                }}
-            >
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#AE2456] mx-auto mb-4"></div>
-                    <p className="text-lg text-[#AE2456]">Loading questions...</p>
-                </div>
-            </div>
-        );
-    }
+    
 
-    if (formComplete) {
-        return <FormCompletionScreen />; // ya koi custom message
-    }
 
     return (
+
         <div className="w-full h-screen flex justify-center items-center px-4 sm:px-6"
             style={{
                 background: "linear-gradient(9deg, rgba(250, 233, 239, 0.97) 0%, rgba(247, 248, 250, 1) 100%)"
@@ -452,22 +383,128 @@ const ProfileForm = () => {
                         style={{ transform: `translateX(-${currentStep * 100}%)` }}
                     >
                         {questions.map((q) => (
-                            <div key={q.id} className="w-full flex-shrink-0 px-2 sm:px-4">
+                            <div key={q.id} className=" w-full flex-shrink-0 px-2 sm:px-4"
+                                >
                                 <p className="text-xl sm:text-2xl font-bold text-black">FamilyMatch</p>
-                                <label className="block text-3xl sm:text-5xl font-bold text-[#AE2456] mb-8 sm:mb-12">
-                                    {q.question}
-                                </label>
-                                
-                                {renderInput(q)}
+
+                                <label className="block text-3xl sm:text-5xl font-bold text-[#AE2456] mb-8 sm:mb-12">{q.question}</label>
+                               
+                                {currentStep >= 9 && currentStep <= 9 ? (
+                                    <h1 className='text-[#AE2456] font-bold text-2xl mb-2'>Food and Drinks</h1>
+                                ) : ( null)
+                                }
+
+                                {
+                                    //Single Select OPtions
+                                    currentStep >= 5 && currentStep <= 9 ? (
+                                        ApiData.data[currentStep - 4]?.map((q) => (
+                                            <span key={q.id} className={currentStep === 4 ? 'flex justify-center' : ''}>
+                                                <button
+                                                    className={`text-[#AE2456] border m-2 py-2 px-6 rounded-3xl w-full sm:w-auto 
+                                             ${answers[questions[currentStep].apiname] === q.id ? 'bg-[#AE2456] text-white' : ''}
+                                             `}
+                                                    onClick={() => {
+                                                        setAnswers({ ...answers, [questions[currentStep].apiname]: q.id });
+                                                        setTimeout(() => {
+                                                            handleNext();
+                                                        }, 1000); // delay in milliseconds (2000 ms = 2 seconds)
+
+                                                    }}
+                                                >
+                                                    {q.name}
+                                                </button>
+                                            </span>
+                                        ))
+                                    )
+                                        :    
+                                        currentStep === 10 ? (
+                                       // Multiple select Answers buttons   
+                                            ApiData?.data?.[6].map((q) => (
+                                                    <button
+                                                        key={q.id}
+                                                        className={` text-black border m-2 py-2 px-6 rounded-3xl sm:w-auto
+                                                    ${(answers[questions[currentStep].apiname] || []).includes(q.id)
+                                                                ? 'bg-black text-white'
+                                                                : ''
+                                                            }
+                                                    `}
+                                                        onClick={() => handleOptionClick(q, questions, currentStep, answers, setAnswers, setSelectedOptions)}   
+                                                    >
+                                                        {q.name}
+                                                    </button>
+                                            ))
+                                        ) : currentStep === 11 ? (
+                                                ApiData?.data?.[7].map((q) => (
+                                                    <button
+                                                        key={q.id}
+                                                        className={`text-black border m-2 py-2 px-6 rounded-3xl sm:w-auto
+                                                    ${(answers[questions[currentStep].apiname] || []).includes(q.id)
+                                                                ? 'bg-black text-white'
+                                                                : ''
+                                                            }
+                                                    `}
+                                                        onClick={() => handleOptionClick(q, questions, currentStep, answers, setAnswers, setSelectedOptions)}
+                                                    >
+                                                        <div className='flex items-center gap-1'>
+                                                            <img src={q.image} alt="" className='w-3 h-3 mr-2' />
+                                                            <span>  {q.name} </span>
+                                                        </div>
+                                                    </button>
+                                                ))
+                                        ) 
+                                        //Tesxt area input field
+                                        : currentStep === 12 ? (
+                                            <div className=''>
+                                                <p className='text-[#AE2456] font-bold mb-2'>Example</p>
+                                                <textarea
+                                                    value={answers[q.apiname] || ''}
+                                                    onChange={handleChange}
+                                                    className="border w-full rounded-lg p-4"
+                                                    rows={4}  // You can adjust number of visible lines here
+                                                    placeholder="What's your vibe? Drop a topic!"
+                                                />
+
+                                                    <div className=' text-center mt-4'>
+                                                        <button className='px-20 py-3 border-2 rounded-4xl text-white bg-[#AE2456]'
+                                                            onClick={handleNext} >Continue</button>
+                                                    </div>
+                                                </div>
+                                            ) : currentStep === 13 ? (
+                                            // File upload input field
+                                                <div>
+
+                                                        <ImageUploader onButtonClick={handleNext} />
+
+                                                    </div>   
+                                                ) : currentStep === 14 ? (
+                                                    <GalleryStyle 
+                                                    handleSelectedValues={onSelectedGalleryOption} 
+                                                    handleNextFucntion={handleNext}
+                                                    apiData={ApiData}
+                                                     />
+                                                ) : currentStep === 15 ? (
+                                                    <FormCompletionScreen answers={answers} />
+                                                ) : (
+                                            // Text input field
+                                                    <InputField
+                                                    q={q}
+                                                    answers={answers}
+                                                    handleChange={handleChange}
+                                                    errors={errors}
+                                                    />
+                                                      )
+                                }
                             </div>
                         ))}
+                        
+
                     </div>
                 </div>
 
-                {/* Navigation buttons - only show for simple input types */}
-                {questions[currentStep]?.input_type && 
-                 ['date', 'text', 'email', 'password', 'dropdown-text'].includes(questions[currentStep].input_type) && (
+
+                {!(currentStep >= 5 && currentStep <= 15) && (
                     <div className="mt-6 flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
+
                         {currentStep !== 0 && (
                             <button
                                 onClick={handlePrev}
@@ -477,7 +514,7 @@ const ProfileForm = () => {
                             </button>
                         )}
 
-                        {currentStep === questions.length - 1 ? (
+                        {currentStep === 3 ? (
                             <button
                                 onClick={handleFinish}
                                 className="bg-green-600 text-white py-2 px-6 rounded-3xl w-full sm:w-auto"
@@ -485,22 +522,40 @@ const ProfileForm = () => {
                                 That's it
                             </button>
                         ) : (
-                            <button
-                                onClick={handleNext}
-                                className="bg-[#AE2456] text-white py-2 px-6 rounded-3xl w-full sm:w-auto 
-                                disabled:opacity-60 disabled:bg-[#00000080] disabled:cursor-not-allowed"
-                                disabled={
-                                    !!errors[questions[currentStep]?.apiname] ||
-                                    (Array.isArray(answers[questions[currentStep]?.apiname]) ? answers[questions[currentStep]?.apiname].length === 0 : !answers[questions[currentStep]?.apiname])
-                                }
-                            >
-                                Next
-                            </button>
+                                <button
+                                    onClick={handleNext}
+                                    className="bg-[#AE2456] text-white py-2 px-6 rounded-3xl w-full sm:w-auto 
+                                    disabled:opacity-60 disabled:bg-[#00000080] disabled:cursor-not-allowed"
+                                    disabled={
+                                        !!errors[questions[currentStep].apiname] ||
+                                        !answers[questions[currentStep].apiname]
+                                    }
+                                >
+                                    Next
+                                </button>
                         )}
+
                     </div>
                 )}
+
+
+                {currentStep >= 10 && currentStep <= 11 ? ( 
+                    <div>
+                        <div className=' text-center'>
+                            <button className='px-20 py-3 border-2 rounded-4xl text-white bg-[#AE2456]'
+                            onClick={handleNext} >Continue</button>
+                        </div>
+                    </div>
+                ) : null
+                    
+                 }
+
             </div>
         </div>
+
+
+
+
     );
 };
 
