@@ -7,7 +7,8 @@ import {
     FaEye,
     FaHeart,
     FaStar,
-    FaSmile
+    FaSmile,
+    FaEnvelope,
 } from 'react-icons/fa';
 
 import ProfileSettings from './ProfileSettings';
@@ -18,6 +19,7 @@ import ViewSection from './ViewSection';
 import LikesSection from './LikesSection';
 import FavoritesSection from './FavoritesSection';
 import WinksSection from './WinksSection';
+import MessagesSection from './MessagesSection';
 import axios from 'axios';
 
 
@@ -25,7 +27,7 @@ function LeftMenu() {
     const [selectedId, setSelectedId] = useState(1); // default to 'Personal'
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true); // Optional: for loading state
-    const [error, setError] = useState(null);  
+    const [error, setError] = useState(null);
 
     const options = [
         { id: 1, label: "Personal", icon: <FaUser /> },
@@ -36,6 +38,7 @@ function LeftMenu() {
         { id: 6, label: "Likes", icon: <FaHeart /> },
         { id: 7, label: "Favorites", icon: <FaStar /> },
         { id: 8, label: "Winks", icon: <FaSmile /> },
+        { id: 9, label: "Messages", icon: <FaEnvelope /> },
     ];
 
     // Render component based on selectedId
@@ -46,12 +49,13 @@ function LeftMenu() {
             case 2:
                 return <AboutMeProfileSection />;
             // Add other components here as needed:
-            case 3: return <MatchDataSection/>;
-            case 4: return <PhotoSection/>;
-            case 5: return <ViewSection/>;
-            case 6: return <LikesSection/>;
-            case 7: return <FavoritesSection/>;
-            case 8: return <WinksSection/> ;
+            case 3: return <MatchDataSection />;
+            case 4: return <PhotoSection />;
+            case 5: return <ViewSection />;
+            case 6: return <LikesSection />;
+            case 7: return <FavoritesSection />;
+            case 8: return <WinksSection />;
+            case 9: return <MessagesSection />;
             // ...
             default:
                 return <div>Select an option from the menu</div>;

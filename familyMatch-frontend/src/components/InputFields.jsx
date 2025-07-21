@@ -8,6 +8,7 @@ const InputField = ({ q, answers, handleChange, errors, }) => {
 
 
     return (
+        
         <div>
             <div className='flex'>
                 <input

@@ -3,7 +3,7 @@ import axios from 'axios';
 import pic from '/images/onlineMoney2.jpg';
 import Button from './Button';
 import { API_BASE_URL } from '../config';
-import toast from 'react-hot-toast';
+import { showAlert, showSuccessAlert, showErrorAlert } from '../utils/alertUtils';
 
 function ApiTesting() {
 
@@ -30,8 +30,10 @@ function ApiTesting() {
 
             console.log('API Response:', response.data);
             console.log('Token:', token);
+            showSuccessAlert('API call successful!');
         } catch (error) {
             console.error('Error fetching data:', error.response?.data || error.message);
+            showErrorAlert('API call failed: ' + (error.response?.data?.message || error.message));
         }
     };
 
@@ -39,8 +41,7 @@ function ApiTesting() {
 
 
     const handleClick=()=>{
-        toast.success("You winked at this user! 😉 You can send unlimited winks.");
-
+        showSuccessAlert("You winked at this user! 😉 You can send unlimited winks.");
     }
 
 

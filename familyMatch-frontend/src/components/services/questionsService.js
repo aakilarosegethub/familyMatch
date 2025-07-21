@@ -2,7 +2,7 @@ import { API_BASE_URL, API_KEY } from '../../config';
 
 export const fetchQuestions = async () => {
     try {
-        const response = await fetch(`${API_BASE_URL}/questions.php`, {
+        const response = await fetch(`${API_BASE_URL}/new-question`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

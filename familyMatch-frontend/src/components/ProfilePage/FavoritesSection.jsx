@@ -1,9 +1,9 @@
 import React from "react";
 import { FaStar, FaEnvelope, FaUser } from "react-icons/fa";
 // import pic  from '../../../public/images/Picture.jpg'
-import pic from '/images/picture.jpg'
-import pic2 from '/images/picture2.jpg'
-import pic3 from '/images/picture3.jpg'
+import pic from '/images/profilePicture.jpg'
+import pic2 from '/images/profilePicture.jpg'
+import pic3 from '/images/profilePicture.jpg'
 
 
 

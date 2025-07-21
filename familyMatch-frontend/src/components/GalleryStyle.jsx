@@ -22,16 +22,16 @@ const GalleryStyle = ({ handleSelectedValues, handleNextFucntion, apiData }) => 
         }
     }, [selected]);
 
-    // useEffect(() => {
-    //     console.log("gallery data", apiData.data[8]);
-    // }, [apiData]);
+    useEffect(() => {
+        console.log("gallery data", apiData);
+    },);
 
     return (
         <div className="max-w-3xl mx-auto px-4 text-center">
             <p className="text-gray-600 mb-6">Choose 3 values to share on your profile.</p>
             {/* Scrollable fixed-height grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-[60vh] overflow-y-scroll no-scrollbar">
-                {apiData.data[8].map(({ id, name, image }) => (
+                {/* {apiData.map(({ id, name, image }) => (
                     <div
                         key={id}
                         onClick={() => toggleValue(id)}
@@ -49,7 +49,7 @@ const GalleryStyle = ({ handleSelectedValues, handleNextFucntion, apiData }) => 
                             </div>
                         )}
                     </div>
-                ))}
+                ))} */}
             </div>
 
             <div className="mt-6 font-semibold text-blue-600">{selected.length}/3 Selected</div>

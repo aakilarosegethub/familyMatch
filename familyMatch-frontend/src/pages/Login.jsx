@@ -19,7 +19,7 @@ function Login() {
 
     <div
       className="bg-cover bg-center min-h-screen flex items-center justify-center"
-      style={{ backgroundImage: "url('/images/coupleImage.jpg')" }}
+              style={{ backgroundImage: "url('/images/coupleImage.jpg')" }}
     >
       {/* Your content here */}
       <LoginForm />

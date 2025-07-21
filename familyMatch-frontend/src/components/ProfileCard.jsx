@@ -31,6 +31,12 @@ const ProfileCard = ({ profile }) => {
 
     const likeProfile = async () => {
         const token = getAuthToken();
+
+        if (!token) {
+            setShowLoginModal(true);
+            return;
+        }
+
         try {
             const formData = new FormData();
             formData.append('profile_id', profile.id);
@@ -47,9 +53,12 @@ const ProfileCard = ({ profile }) => {
 
             console.log('API Response for Like:', response.data.is_like);
             setIsLiked(response.data.is_like);
-            console.log('Token:', token);
+            window.toaster('success', response.data.is_like === 1 ? "Profile liked! ❤️" : "Profile unliked");
+            // toast.success(response.data.is_like === 1 ? "Profile liked! ❤️" : "Profile unliked");
         } catch (error) {
-            console.error('Error liking profile:', error.response?.data || error.message);
+            // console.error('Error liking profile:', error.response?.data || error.message);
+            window.toaster('error', "Failed to like profile. Please try again.");
+            // toast.error("Failed to like profile. Please try again.");
         }
     };
 
@@ -57,6 +66,11 @@ const ProfileCard = ({ profile }) => {
     const winkProfile = async () => {
         const token = getAuthToken();
 
+
+        if (!token) {
+            setShowLoginModal(true);
+            return;
+        }
         // Trigger animation first
         setClicked(true);
 
@@ -100,7 +114,7 @@ const ProfileCard = ({ profile }) => {
     return (
         <>
             <div
-                className="max-w-sm w-full h-auto p-2 rounded-3xl backdrop-blur-md bg-[#9334EB]/5 border-white/20 shadow-2xl hover:shadow-xl transition flex flex-col justify-between"
+                className="max-w-sm w-full h-auto p-2 rounded-3xl backdrop-blur-md bg-[#fcf8ff] border-white/20 shadow-2xl hover:shadow-xl transition flex flex-col justify-between"
                 onClick={handleClick}
             >
                 {/* Top Section */}
@@ -162,8 +176,6 @@ const ProfileCard = ({ profile }) => {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     likeProfile();
-                                    // Optionally toggle the like state locally if immediate UI feedback is desired:
-                                    setIsLiked(isLiked === 1 ? 0 : 1);
                                 }}
                             >
                                 <FaHeart />

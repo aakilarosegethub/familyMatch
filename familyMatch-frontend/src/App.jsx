@@ -11,7 +11,58 @@ import LoginForm from './components/LoginForm';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SearchListingPage from './pages/SearchListingPage';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
+
+// Global toaster function
+const toaster = (status, message) => {
+  switch (status.toLowerCase()) {
+    case 'success':
+      toast.success(message, {
+        duration: 4000,
+        position: 'top-right',
+        style: {
+          background: '#10B981',
+          color: '#fff',
+        },
+      });
+      break;
+    case 'error':
+      toast.error(message, {
+        duration: 5000,
+        position: 'top-right',
+        style: {
+          background: '#EF4444',
+          color: '#fff',
+        },
+      });
+      break;
+    case 'warning':
+      toast(message, {
+        duration: 4000,
+        position: 'top-right',
+        icon: '⚠️',
+        style: {
+          background: '#F59E0B',
+          color: '#fff',
+        },
+      });
+      break;
+    case 'info':
+    default:
+      toast(message, {
+        duration: 3000,
+        position: 'top-right',
+        style: {
+          background: '#3B82F6',
+          color: '#fff',
+        },
+      });
+      break;
+  }
+};
+
+// Make toaster globally available
+window.toaster = toaster;
 
 function App() {
 

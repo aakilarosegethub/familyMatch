@@ -5,10 +5,10 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),
-    tailwindcss(),
+  tailwindcss(),
   ],
-
   
+
   //Added this proxy so that we can use the api without any CORS issues
   // server: {
   //   proxy: {

@@ -1,0 +1,16 @@
+curl 'https://familymatch.aakilarose.com/api/update-profile' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'authorization: Bearer eyJ1c2VyX2lkIjoiMSIsInRpbWVzdGFtcCI6MTc1MjgyMzk2Mn0=' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundaryFqzD5mLI7FNpvrp4' \
+  -H 'origin: http://localhost:5173' \
+  -H 'priority: u=1, i' \
+  -H 'referer: http://localhost:5173/' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  --data-raw $'------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="full_name"\r\n\r\nUmar Farooq Family House\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="dob"\r\n\r\n2002-07-16\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="location"\r\n\r\nAfghanistan\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="bio"\r\n\r\nThis is short description\r\n\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="gender"\r\n\r\n4\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="country"\r\n\r\n167\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="state"\r\n\r\n3176\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4\r\nContent-Disposition: form-data; name="city"\r\n\r\n85547\r\n------WebKitFormBoundaryFqzD5mLI7FNpvrp4--\r\n'

@@ -1,47 +1,74 @@
 import React, { useEffect } from 'react';
 
 function InterestSection({data}) {
-    // const aboutThem = [
-    //     { id: 1, icon: '👤', description: 'Self-growth' },
-    //     { id: 2, icon: '🌍', description: 'Global connections' },
-    //     { id: 3, icon: '💡', description: 'Problem solver' },
-    //     { id: 4, icon: '🎯', description: 'Goal-oriented' },
-    //     { id: 5, icon: '🎨', description: 'Storytelling' },
-    //     { id: 6, icon: '🚀', description: 'Go-getter' },
-    //     { id: 7, icon: '📚', description: 'Lifelong learner' },
-    //     { id: 8, icon: '🤝', description: 'Team player' },
-    //     { id: 9, icon: '🧠', description: 'Critical thinker' },
-    //     { id: 10, icon: '💬', description: 'Clear communicator' }
-    // ];
-
     return (
-        <div className="my-10 px-4 max-w-3xl mx-auto">
-            <div className="border-y border-gray-300  py-6 mb-10">
-                <p className="text-xl font-semibold mb-4">More</p>
-                <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                        <p>💬</p>
-                        <p className="">White/Caucasian</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <p>🤝</p>
-                        <p className="">Start a Serious Relationship</p>
+        <div className="p-6">
+            {/* More Info Section */}
+            <div className="mb-8">
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-100">
+                    <h3 className="text-lg font-semibold text-indigo-700 mb-4 flex items-center gap-2">
+                        <span className="text-2xl">ℹ️</span>
+                        More Information
+                    </h3>
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-white/60 rounded-lg">
+                            <span className="text-xl">👤</span>
+                            <div>
+                                <p className="text-sm text-gray-500">Ethnicity</p>
+                                <p className="font-medium text-gray-800">White/Caucasian</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-white/60 rounded-lg">
+                            <span className="text-xl">💕</span>
+                            <div>
+                                <p className="text-sm text-gray-500">Looking for</p>
+                                <p className="font-medium text-gray-800">Start a Serious Relationship</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <h2 className="text-2xl font-bold mb-6">Interests</h2>
+            {/* Interests Section */}
+            <div>
+                <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center gap-3">
+                    <span className="text-3xl">🎯</span>
+                    Interests
+                </h2>
 
-            <div className="grid gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-                {data?.interests?.map((item) => (
-                    <div
-                        key={item.id}
-                        className="flex justify-center items-center gap-3 bg-gray-100 rounded-4xl p-1 shadow-sm hover:shadow-md transition"
-                    >
-                        <img className='w-4 h-4' src={item.image} alt="" />
-                        <p className="text-gray-800">{item.title}</p>
+                <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                    {data?.interests?.map((item) => (
+                        <div
+                            key={item.id}
+                            className="group relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="relative z-10 flex flex-col items-center gap-2">
+                                <div className="w-8 h-8 flex items-center justify-center">
+                                    <img 
+                                        className='w-6 h-6 object-contain' 
+                                        src={item.image} 
+                                        alt={item.title}
+                                        onError={(e) => {
+                                            e.target.style.display = 'none';
+                                        }}
+                                    />
+                                </div>
+                                <p className="text-sm font-medium text-gray-700 text-center leading-tight">
+                                    {item.title}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                
+                {(!data?.interests || data.interests.length === 0) && (
+                    <div className="text-center py-12">
+                        <div className="text-6xl mb-4">🎨</div>
+                        <h3 className="text-xl font-semibold text-gray-700 mb-2">No Interests Yet</h3>
+                        <p className="text-gray-500">This person hasn't added their interests yet.</p>
                     </div>
-                ))}
+                )}
             </div>
         </div>
     );
